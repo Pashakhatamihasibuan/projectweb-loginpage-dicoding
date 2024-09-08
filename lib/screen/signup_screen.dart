@@ -157,7 +157,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
         ? BoxFit.fitWidth
         : BoxFit.cover;
 
-    return Container(
+    return SizedBox(
       width: width, // Menyesuaikan dengan lebar layar
       height: height *
           (ResponsiveWidget.isSmallScreen(context)
