@@ -9,15 +9,52 @@ class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
 
   @override
-  State<SignUpScreen> createState() => _SignUpScreenState();
+  _SignUpScreenState createState() => _SignUpScreenState();
 }
 
 class _SignUpScreenState extends State<SignUpScreen> {
-  final urlImages = [
-    "https://images.unsplash.com/photo-1718679388215-75b00db812f5?w=1600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHx0b3BpYy1mZWVkfDR8NnNNVmpUTFNrZVF8fGVufDB8fHx8fA%3D%3D",
-    "https://images.unsplash.com/photo-1725539075423-984d4dcdefae?q=80&w=1664&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    "https://images.unsplash.com/photo-1725435214975-989b71be4a56?q=80&w=1635&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-  ];
+  final TextEditingController _nameController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _confirmPasswordController = TextEditingController();
+
+  bool _isLoading = false;
+  bool _obscurePassword = true; 
+
+  @override
+  void dispose() {
+    
+    _nameController.dispose();
+    _emailController.dispose();
+    _passwordController.dispose();
+    _confirmPasswordController.dispose();
+    super.dispose();
+  }
+
+  void _togglePasswordVisibility() {
+    setState(() {
+      _obscurePassword = !_obscurePassword;
+    });
+  }
+
+  Future<void> _register() async {
+    setState(() {
+      _isLoading = true; 
+    });
+
+    
+    await Future.delayed(const Duration(seconds: 2));
+
+    
+    setState(() {
+      _isLoading = false; 
+    });
+
+    
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text('Registered Success')),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -46,10 +83,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         },
                         options: CarouselOptions(
                           viewportFraction:
-                              1.0, // Gambar penuh sesuai lebar container
-                          autoPlay: true, // Auto play
+                              1.0, 
+                          autoPlay: true, 
                           autoPlayInterval:
-                              const Duration(seconds: 3), // Durasi setiap slide
+                              const Duration(seconds: 3), 
                         ),
                       ),
                     ),
@@ -111,28 +148,38 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           context: context,
                           label: "Name",
                           hint: "Enter Name",
-                          icon: Icons.person_2_outlined),
+                          icon: Icons.person_2_outlined,
+                          controller: _nameController),
                       buildInputField(
                           context: context,
                           label: "Email",
                           hint: "Enter Email",
-                          icon: Icons.email_outlined),
+                          icon: Icons.email_outlined,
+                          controller: _emailController),
                       buildInputField(
                           context: context,
                           label: "Password",
                           hint: "Enter Password",
                           icon: Icons.lock_outline_rounded,
-                          obscureText: true),
+                          controller: _passwordController,
+                          obscureText: _obscurePassword,
+                          toggleObscureText: _togglePasswordVisibility),
                       buildInputField(
                           context: context,
                           label: "Confirm Password",
                           hint: "Enter Confirm Password",
                           icon: Icons.lock_outline_rounded,
-                          obscureText: true),
+                          controller: _confirmPasswordController,
+                          obscureText: _obscurePassword,
+                          toggleObscureText: _togglePasswordVisibility),
                       SizedBox(
                         height: height * 0.06,
                       ),
-                      buildRegisterButton(),
+                      _isLoading
+                          ? const Center(
+                              child: CircularProgressIndicator(),
+                            )
+                          : buildRegisterButton(),
                       SizedBox(
                         height: height * 0.03,
                       ),
@@ -152,17 +199,17 @@ class _SignUpScreenState extends State<SignUpScreen> {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
 
-    // Mengatur BoxFit dan ukuran berdasarkan ukuran layar
+    
     BoxFit fitType = ResponsiveWidget.isSmallScreen(context)
         ? BoxFit.fitWidth
         : BoxFit.cover;
 
     return SizedBox(
-      width: width, // Menyesuaikan dengan lebar layar
+      width: width, 
       height: height *
           (ResponsiveWidget.isSmallScreen(context)
               ? 0.3
-              : 0.8), // Proporsi tinggi gambar
+              : 0.8), 
       child: Image.network(
         urlImage,
         fit: fitType,
@@ -175,7 +222,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
     required String label,
     required String hint,
     required IconData icon,
+    required TextEditingController controller,
     bool obscureText = false,
+    VoidCallback? toggleObscureText,
   }) {
     double width = MediaQuery.of(context).size.width;
     return Padding(
@@ -200,6 +249,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
               color: AppColor.whiteColor,
             ),
             child: TextFormField(
+              controller: controller,
               obscureText: obscureText,
               style: ralewayStyle.copyWith(
                 fontWeight: FontWeight.w400,
@@ -213,6 +263,17 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   color: AppColor.blueDarkColor.withOpacity(0.5),
                 ),
                 prefixIcon: Icon(icon, color: AppColor.blueDarkColor),
+                suffixIcon: toggleObscureText != null
+                    ? IconButton(
+                        icon: Icon(
+                          obscureText
+                              ? Icons.visibility_off
+                              : Icons.visibility,
+                          color: AppColor.blueDarkColor,
+                        ),
+                        onPressed: toggleObscureText,
+                      )
+                    : null,
                 border: InputBorder.none,
               ),
             ),
@@ -229,7 +290,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
         borderRadius: BorderRadius.circular(16),
         color: AppColor.mainBlueColor,
         child: InkWell(
-          onTap: () {},
+          onTap: _register,
           borderRadius: BorderRadius.circular(16),
           child: Container(
             height: 50,
@@ -253,27 +314,26 @@ class _SignUpScreenState extends State<SignUpScreen> {
     return Center(
       child: GestureDetector(
         onTap: () {
-          Navigator.of(context).push(
-            MaterialPageRoute(
-              builder: (context) => const LoginScreen(),
-            ),
-          );
+          Navigator.pushReplacement(
+              context, MaterialPageRoute(builder: (context) => LoginScreen()));
         },
         child: RichText(
           text: TextSpan(
             children: [
               TextSpan(
-                text: 'Already have an account?',
+                text: 'Already have an account? ',
                 style: ralewayStyle.copyWith(
-                  color: AppColor.blueDarkColor,
-                  fontWeight: FontWeight.normal,
+                  fontSize: 14,
+                  color: AppColor.textColor,
+                  fontWeight: FontWeight.w400,
                 ),
               ),
               TextSpan(
-                text: ' Log in',
+                text: 'Login',
                 style: ralewayStyle.copyWith(
-                  color: AppColor.mainBlueColor,
-                  fontWeight: FontWeight.w800,
+                  fontSize: 14,
+                  color: AppColor.blueDarkColor,
+                  fontWeight: FontWeight.w700,
                 ),
               ),
             ],
@@ -283,3 +343,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
     );
   }
 }
+
+final urlImages = [
+    "https:
+    "https:
+    "https:
+  ];
