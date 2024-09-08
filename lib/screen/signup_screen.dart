@@ -1,6 +1,7 @@
 import 'package:aplikasi_cerita/pattern/app_style/style.dart';
 import 'package:aplikasi_cerita/responsive/responsive_widget.dart';
 import 'package:aplikasi_cerita/screen/login_screen.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import '../pattern/color_theme/app_color.dart';
 
@@ -12,6 +13,12 @@ class SignUpScreen extends StatefulWidget {
 }
 
 class _SignUpScreenState extends State<SignUpScreen> {
+  final urlImages = [
+    "https://images.unsplash.com/photo-1718679388215-75b00db812f5?w=1600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHx0b3BpYy1mZWVkfDR8NnNNVmpUTFNrZVF8fGVufDB8fHx8fA%3D%3D",
+    "https://images.unsplash.com/photo-1725539075423-984d4dcdefae?q=80&w=1664&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "https://images.unsplash.com/photo-1725435214975-989b71be4a56?q=80&w=1635&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+  ];
+
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
@@ -31,9 +38,19 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     child: Container(
                       height: height,
                       color: AppColor.mainBlueColor,
-                      child: Image.asset(
-                        "assets/images/gambar2.jpg",
-                        fit: BoxFit.cover,
+                      child: CarouselSlider.builder(
+                        itemCount: urlImages.length,
+                        itemBuilder: (context, index, realIndex) {
+                          final urlImage = urlImages[index];
+                          return buildImages(urlImage, context);
+                        },
+                        options: CarouselOptions(
+                          viewportFraction:
+                              1.0, // Gambar penuh sesuai lebar container
+                          autoPlay: true, // Auto play
+                          autoPlayInterval:
+                              const Duration(seconds: 3), // Durasi setiap slide
+                        ),
                       ),
                     ),
                   ),
@@ -90,295 +107,177 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       SizedBox(
                         height: height * 0.064,
                       ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 16),
-                        child: Text(
-                          "Name",
-                          style: ralewayStyle.copyWith(
-                            fontSize: 16,
-                            color: AppColor.blueDarkColor,
-                            fontWeight: FontWeight.w700,
-                          ),
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 6,
-                      ),
-                      Container(
-                        height: 50,
-                        width: width,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(16),
-                          color: AppColor.whiteColor,
-                        ),
-                        child: TextFormField(
-                          style: ralewayStyle.copyWith(
-                            fontWeight: FontWeight.w400,
-                            color: AppColor.blueDarkColor,
-                            fontSize: 16,
-                          ),
-                          decoration: InputDecoration(
-                            border: InputBorder.none,
-                            prefixIcon: Padding(
-                              padding: const EdgeInsets.only(left: 8),
-                              child: IconButton(
-                                onPressed: () {},
-                                icon: const Icon(
-                                  Icons.person_2_outlined,
-                                ),
-                              ),
-                            ),
-                            contentPadding: const EdgeInsets.only(
-                              top: 16,
-                            ),
-                            hintText: "Enter Name",
-                            hintStyle: ralewayStyle.copyWith(
-                              fontWeight: FontWeight.w400,
-                              color: AppColor.blueDarkColor.withOpacity(0.5),
-                              fontSize: 16,
-                            ),
-                          ),
-                        ),
-                      ),
-                      SizedBox(
-                        height: height * 0.014,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 16),
-                        child: Text(
-                          "Email",
-                          style: ralewayStyle.copyWith(
-                            fontSize: 16,
-                            color: AppColor.blueDarkColor,
-                            fontWeight: FontWeight.w700,
-                          ),
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 6,
-                      ),
-                      Container(
-                        height: 50,
-                        width: width,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(16),
-                          color: AppColor.whiteColor,
-                        ),
-                        child: TextFormField(
-                          style: ralewayStyle.copyWith(
-                            fontWeight: FontWeight.w400,
-                            color: AppColor.blueDarkColor,
-                            fontSize: 16,
-                          ),
-                          decoration: InputDecoration(
-                            border: InputBorder.none,
-                            prefixIcon: Padding(
-                              padding: const EdgeInsets.only(left: 8),
-                              child: IconButton(
-                                onPressed: () {},
-                                icon: const Icon(
-                                  Icons.email_outlined,
-                                ),
-                              ),
-                            ),
-                            contentPadding: const EdgeInsets.only(
-                              top: 16,
-                            ),
-                            hintText: "Enter Email",
-                            hintStyle: ralewayStyle.copyWith(
-                              fontWeight: FontWeight.w400,
-                              color: AppColor.blueDarkColor.withOpacity(0.5),
-                              fontSize: 16,
-                            ),
-                          ),
-                        ),
-                      ),
-                      SizedBox(
-                        height: height * 0.014,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 16),
-                        child: Text(
-                          "Password",
-                          style: ralewayStyle.copyWith(
-                            fontSize: 16,
-                            color: AppColor.blueDarkColor,
-                            fontWeight: FontWeight.w700,
-                          ),
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 6,
-                      ),
-                      Container(
-                        height: 50,
-                        width: width,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(16),
-                          color: AppColor.whiteColor,
-                        ),
-                        child: TextFormField(
-                          style: ralewayStyle.copyWith(
-                            fontWeight: FontWeight.w400,
-                            color: AppColor.blueDarkColor,
-                            fontSize: 16,
-                          ),
-                          obscureText: true,
-                          decoration: InputDecoration(
-                            border: InputBorder.none,
-                            suffixIcon: Padding(
-                              padding: const EdgeInsets.only(right: 8),
-                              child: IconButton(
-                                onPressed: () {},
-                                icon: const Icon(
-                                  Icons.visibility_off_rounded,
-                                ),
-                              ),
-                            ),
-                            prefixIcon: Padding(
-                              padding: const EdgeInsets.only(left: 8),
-                              child: IconButton(
-                                onPressed: () {},
-                                icon: const Icon(
-                                  Icons.lock_outline_rounded,
-                                ),
-                              ),
-                            ),
-                            contentPadding: const EdgeInsets.only(
-                              top: 16,
-                            ),
-                            hintText: "Enter Passowrd",
-                            hintStyle: ralewayStyle.copyWith(
-                              fontWeight: FontWeight.w400,
-                              color: AppColor.blueDarkColor.withOpacity(0.5),
-                              fontSize: 16,
-                            ),
-                          ),
-                        ),
-                      ),
-                      SizedBox(
-                        height: height * 0.014,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 16),
-                        child: Text(
-                          "Confirm Password",
-                          style: ralewayStyle.copyWith(
-                            fontSize: 16,
-                            color: AppColor.blueDarkColor,
-                            fontWeight: FontWeight.w700,
-                          ),
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 6,
-                      ),
-                      Container(
-                        height: 50,
-                        width: width,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(16),
-                          color: AppColor.whiteColor,
-                        ),
-                        child: TextFormField(
-                          style: ralewayStyle.copyWith(
-                            fontWeight: FontWeight.w400,
-                            color: AppColor.blueDarkColor,
-                            fontSize: 16,
-                          ),
-                          decoration: InputDecoration(
-                            border: InputBorder.none,
-                            prefixIcon: Padding(
-                              padding: const EdgeInsets.only(left: 8),
-                              child: IconButton(
-                                onPressed: () {},
-                                icon: const Icon(
-                                  Icons.lock_outline_rounded,
-                                ),
-                              ),
-                            ),
-                            contentPadding: const EdgeInsets.only(
-                              top: 16,
-                            ),
-                            hintText: "Enter Confirm Password",
-                            hintStyle: ralewayStyle.copyWith(
-                              fontWeight: FontWeight.w400,
-                              color: AppColor.blueDarkColor.withOpacity(0.5),
-                              fontSize: 16,
-                            ),
-                          ),
-                        ),
-                      ),
+                      buildInputField(
+                          context: context,
+                          label: "Name",
+                          hint: "Enter Name",
+                          icon: Icons.person_2_outlined),
+                      buildInputField(
+                          context: context,
+                          label: "Email",
+                          hint: "Enter Email",
+                          icon: Icons.email_outlined),
+                      buildInputField(
+                          context: context,
+                          label: "Password",
+                          hint: "Enter Password",
+                          icon: Icons.lock_outline_rounded,
+                          obscureText: true),
+                      buildInputField(
+                          context: context,
+                          label: "Confirm Password",
+                          hint: "Enter Confirm Password",
+                          icon: Icons.lock_outline_rounded,
+                          obscureText: true),
                       SizedBox(
                         height: height * 0.06,
                       ),
-                      Material(
-                        color: Colors.transparent,
-                        child: InkWell(
-                          onTap: () {},
-                          borderRadius: BorderRadius.circular(16),
-                          child: Ink(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 70, vertical: 18),
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(16),
-                              color: AppColor.mainBlueColor,
-                            ),
-                            child: Text(
-                              "Register",
-                              style: ralewayStyle.copyWith(
-                                fontWeight: FontWeight.w700,
-                                color: AppColor.whiteColor,
-                                fontSize: 16,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
+                      buildRegisterButton(),
                       SizedBox(
                         height: height * 0.03,
                       ),
-                      Row(
-                        children: [
-                          Text(
-                            "Have account?",
-                            style: ralewayStyle.copyWith(
-                              fontSize: 16,
-                              color: AppColor.blueDarkColor,
-                              fontWeight: FontWeight.normal,
-                            ),
-                          ),
-                          SizedBox(
-                            width: width * 0.0050,
-                          ),
-                          GestureDetector(
-                            onTap: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) {
-                                    return LoginScreen();
-                                  },
-                                ),
-                              );
-                            },
-                            child: Text(
-                              "Login",
-                              style: ralewayStyle.copyWith(
-                                fontSize: 16,
-                                color: AppColor.mainBlueColor,
-                                fontWeight: FontWeight.w800,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
+                      buildLoginText(context),
                     ],
                   ),
                 ),
               ),
             )
           ],
+        ),
+      ),
+    );
+  }
+
+  Widget buildImages(String urlImage, BuildContext context) {
+    double height = MediaQuery.of(context).size.height;
+    double width = MediaQuery.of(context).size.width;
+
+    // Mengatur BoxFit dan ukuran berdasarkan ukuran layar
+    BoxFit fitType = ResponsiveWidget.isSmallScreen(context)
+        ? BoxFit.fitWidth
+        : BoxFit.cover;
+
+    return Container(
+      width: width, // Menyesuaikan dengan lebar layar
+      height: height *
+          (ResponsiveWidget.isSmallScreen(context)
+              ? 0.3
+              : 0.8), // Proporsi tinggi gambar
+      child: Image.network(
+        urlImage,
+        fit: fitType,
+      ),
+    );
+  }
+
+  Widget buildInputField({
+    required BuildContext context,
+    required String label,
+    required String hint,
+    required IconData icon,
+    bool obscureText = false,
+  }) {
+    double width = MediaQuery.of(context).size.width;
+    return Padding(
+      padding: const EdgeInsets.only(left: 16),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            label,
+            style: ralewayStyle.copyWith(
+              fontSize: 16,
+              color: AppColor.blueDarkColor,
+              fontWeight: FontWeight.w700,
+            ),
+          ),
+          const SizedBox(height: 6),
+          Container(
+            height: 50,
+            width: width,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(16),
+              color: AppColor.whiteColor,
+            ),
+            child: TextFormField(
+              obscureText: obscureText,
+              style: ralewayStyle.copyWith(
+                fontWeight: FontWeight.w400,
+                color: AppColor.blueDarkColor,
+                fontSize: 16,
+              ),
+              decoration: InputDecoration(
+                hintText: hint,
+                hintStyle: ralewayStyle.copyWith(
+                  fontWeight: FontWeight.w400,
+                  color: AppColor.blueDarkColor.withOpacity(0.5),
+                ),
+                prefixIcon: Icon(icon, color: AppColor.blueDarkColor),
+                border: InputBorder.none,
+              ),
+            ),
+          ),
+          const SizedBox(height: 16),
+        ],
+      ),
+    );
+  }
+
+  Widget buildRegisterButton() {
+    return Center(
+      child: Material(
+        borderRadius: BorderRadius.circular(16),
+        color: AppColor.mainBlueColor,
+        child: InkWell(
+          onTap: () {},
+          borderRadius: BorderRadius.circular(16),
+          child: Container(
+            height: 50,
+            width: 300,
+            alignment: Alignment.center,
+            child: Text(
+              'Register',
+              style: ralewayStyle.copyWith(
+                color: AppColor.whiteColor,
+                fontSize: 16,
+                fontWeight: FontWeight.w700,
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget buildLoginText(BuildContext context) {
+    return Center(
+      child: GestureDetector(
+        onTap: () {
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (context) => const LoginScreen(),
+            ),
+          );
+        },
+        child: RichText(
+          text: TextSpan(
+            children: [
+              TextSpan(
+                text: 'Already have an account?',
+                style: ralewayStyle.copyWith(
+                  color: AppColor.blueDarkColor,
+                  fontWeight: FontWeight.normal,
+                ),
+              ),
+              TextSpan(
+                text: ' Log in',
+                style: ralewayStyle.copyWith(
+                  color: AppColor.mainBlueColor,
+                  fontWeight: FontWeight.w800,
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

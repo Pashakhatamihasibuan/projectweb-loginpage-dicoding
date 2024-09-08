@@ -4,14 +4,9 @@ import 'package:aplikasi_cerita/screen/signup_screen.dart';
 import 'package:flutter/material.dart';
 import '../pattern/color_theme/app_color.dart';
 
-class LoginScreen extends StatefulWidget {
+class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
 
-  @override
-  State<LoginScreen> createState() => _LoginScreenState();
-}
-
-class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
