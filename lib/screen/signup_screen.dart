@@ -16,14 +16,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
-  final TextEditingController _confirmPasswordController = TextEditingController();
+  final TextEditingController _confirmPasswordController =
+      TextEditingController();
 
   bool _isLoading = false;
-  bool _obscurePassword = true; 
+  bool _obscurePassword = true;
 
   @override
   void dispose() {
-    
     _nameController.dispose();
     _emailController.dispose();
     _passwordController.dispose();
@@ -39,18 +39,15 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
   Future<void> _register() async {
     setState(() {
-      _isLoading = true; 
+      _isLoading = true;
     });
 
-    
     await Future.delayed(const Duration(seconds: 2));
 
-    
     setState(() {
-      _isLoading = false; 
+      _isLoading = false;
     });
 
-    
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(content: Text('Registered Success')),
     );
@@ -82,11 +79,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           return buildImages(urlImage, context);
                         },
                         options: CarouselOptions(
-                          viewportFraction:
-                              1.0, 
-                          autoPlay: true, 
-                          autoPlayInterval:
-                              const Duration(seconds: 3), 
+                          viewportFraction: 1.0,
+                          autoPlay: true,
+                          autoPlayInterval: const Duration(seconds: 3),
                         ),
                       ),
                     ),
@@ -199,17 +194,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
 
-    
     BoxFit fitType = ResponsiveWidget.isSmallScreen(context)
         ? BoxFit.fitWidth
         : BoxFit.cover;
 
     return SizedBox(
-      width: width, 
-      height: height *
-          (ResponsiveWidget.isSmallScreen(context)
-              ? 0.3
-              : 0.8), 
+      width: width,
+      height: height * (ResponsiveWidget.isSmallScreen(context) ? 0.3 : 0.8),
       child: Image.network(
         urlImage,
         fit: fitType,
@@ -266,9 +257,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 suffixIcon: toggleObscureText != null
                     ? IconButton(
                         icon: Icon(
-                          obscureText
-                              ? Icons.visibility_off
-                              : Icons.visibility,
+                          obscureText ? Icons.visibility_off : Icons.visibility,
                           color: AppColor.blueDarkColor,
                         ),
                         onPressed: toggleObscureText,
@@ -345,7 +334,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
 }
 
 final urlImages = [
-    "https:
-    "https:
-    "https:
-  ];
+  "https://images.unsplash.com/photo-1718679388215-75b00db812f5?w=1600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHx0b3BpYy1mZWVkfDR8NnNNVmpUTFNrZVF8fGVufDB8fHx8fA%3D%3D",
+  "https://images.unsplash.com/photo-1725539075423-984d4dcdefae?q=80&w=1664&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  "https://images.unsplash.com/photo-1725435214975-989b71be4a56?q=80&w=1635&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+];
