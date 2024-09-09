@@ -9,7 +9,7 @@ Project Dicoding pada pembelajaran Flutter Pemula, melakukan responsive desgin b
 
 ### LoginPage and RegisterPage (Website)
 
-<img width="322" alt="LoginPage" src="https://github.com/Pashakhatamihasibuan/projectweb-loginpage-dicoding/blob/main/ui_design/Screenshot%202024-09-09%20at%2010.44.00.png"> <img width="322" alt="RegisterPage" src="https://github.com/Pashakhatamihasibuan/projectweb-loginpage-dicoding/blob/main/ui_design/Screenshot%202024-09-09%20at%2010.51.53.png">
+<img width="400" height="400" alt="LoginPage" src="https://github.com/Pashakhatamihasibuan/projectweb-loginpage-dicoding/blob/main/ui_design/Screenshot%202024-09-09%20at%2010.44.00.png"> <img width="322" alt="RegisterPage" src="https://github.com/Pashakhatamihasibuan/projectweb-loginpage-dicoding/blob/main/ui_design/Screenshot%202024-09-09%20at%2010.51.53.png">
 
 ### LoginPage and RegisterPage (Mobile)
 
