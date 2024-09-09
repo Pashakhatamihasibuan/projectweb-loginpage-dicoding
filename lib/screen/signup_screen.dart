@@ -9,6 +9,7 @@ class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
 
   @override
+  // ignore: library_private_types_in_public_api
   _SignUpScreenState createState() => _SignUpScreenState();
 }
 
@@ -49,7 +50,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
     });
 
     ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text('Registered Success')),
+      const SnackBar(content: Text('Registered Success')),
     );
   }
 
@@ -303,8 +304,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
     return Center(
       child: GestureDetector(
         onTap: () {
-          Navigator.pushReplacement(
-              context, MaterialPageRoute(builder: (context) => LoginScreen()));
+          Navigator.pushReplacement(context,
+              MaterialPageRoute(builder: (context) => const LoginScreen()));
         },
         child: RichText(
           text: TextSpan(
@@ -321,7 +322,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 text: 'Login',
                 style: ralewayStyle.copyWith(
                   fontSize: 14,
-                  color: AppColor.blueDarkColor,
+                  color: AppColor.mainBlueColor,
                   fontWeight: FontWeight.w700,
                 ),
               ),
