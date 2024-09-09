@@ -1,6 +1,16 @@
 # aplikasi_loginpage
 
-A new Flutter project for dicoding
+Project Dicoding pada pembelajaran Flutter Pemula, melakukan responsive desgin baik dalam bentuk website maupun bentuk mobile
+- terdapat statefulwidget
+- terdapat statelesswidget
+- navigator
+
+## 📸 Screenshots
+
+<img width="322" alt="Design - Sign In V1" src="https://github.com/Pashakhatamihasibuan/Design-to-Flutter-SignInPage/blob/main/figma/signInScreenV1.png">
+
+<img width="322" alt="Design - Sign In V2" src="https://github.com/Pashakhatamihasibuan/Design-to-Flutter-SignInPage/blob/main/figma/SignInScreenV2.png">
+
 
 ## 🔗 Links
 
