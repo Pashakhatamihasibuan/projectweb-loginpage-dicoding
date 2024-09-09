@@ -7,9 +7,13 @@ Project Dicoding pada pembelajaran Flutter Pemula, melakukan responsive desgin b
 
 ## 📸 Screenshots
 
-<img width="322" alt="Design - Sign In V1" src="https://github.com/Pashakhatamihasibuan/Design-to-Flutter-SignInPage/blob/main/figma/signInScreenV1.png">
+### LoginPage and RegisterPage (Website)
 
-<img width="322" alt="Design - Sign In V2" src="https://github.com/Pashakhatamihasibuan/Design-to-Flutter-SignInPage/blob/main/figma/SignInScreenV2.png">
+<img width="322" alt="LoginPage" src="https://github.com/Pashakhatamihasibuan/projectweb-loginpage-dicoding/blob/main/ui_design/Screenshot%202024-09-09%20at%2010.44.00.png"> <img width="322" alt="RegisterPage" src="https://github.com/Pashakhatamihasibuan/projectweb-loginpage-dicoding/blob/main/ui_design/Screenshot%202024-09-09%20at%2010.51.53.png">
+
+### LoginPage and RegisterPage (Mobile)
+
+<img width="322" alt="LoginPage" src="https://github.com/Pashakhatamihasibuan/projectweb-loginpage-dicoding/blob/main/ui_design/Screenshot_1725853763.png"> <img width="322" alt="RegisterPage" src="https://github.com/Pashakhatamihasibuan/projectweb-loginpage-dicoding/blob/main/ui_design/Screenshot_1725853805.png">
 
 
 ## 🔗 Links
